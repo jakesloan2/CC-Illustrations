@@ -35,10 +35,8 @@
 <link rel="icon" href="/images/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="images/hero.jpg" fetchpriority="high">
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="fonts/figtree-var.woff2" crossorigin>
+<link rel="preload" as="image" href="images/hero-800.webp" imagesrcset="images/hero-800.webp 800w, images/hero-1280.webp 1280w, images/hero-1920.webp 1920w" imagesizes="100vw" fetchpriority="high">
 
 <!-- ============ SEO: STRUCTURED DATA ============ -->
 <script type="application/ld+json">
@@ -148,6 +146,19 @@
 </script>
 
 <style>
+/* Self-hosted variable font — one 20KB file covers weights 300-900.
+   Removes two preconnects and a render-blocking external stylesheet. */
+@font-face{
+  font-family:"Figtree";font-style:normal;font-weight:300 900;font-display:swap;
+  src:url("fonts/figtree-var.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Figtree";font-style:italic;font-weight:300 900;font-display:swap;
+  src:url("fonts/figtree-var-italic.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
 /* ============================================================
    CC ILLUSTRATIONS
    Palette  ink #101010 / paper #fff / rule #e4e4e4 / muted #6e6e6e
@@ -159,14 +170,14 @@
   --paper:#ffffff;
   --rule:#e4e4e4;
   --muted:#6e6e6e;
-  --slate:#8e8e8e;
+  --slate:#6b6b6b;   /* was #8e8e8e — failed AA against white cite text */
   --lime:#7dc242;
   --pink:#e5007d;
   --cyan:#26a9e0;
   --orange:#f26522;
   --yellow:#ffc20e;
-  --pad:clamp(20px,5vw,64px);
-  --head-h:64px;
+  --pad:clamp(18px,5vw,64px);
+  --head-h:60px;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -191,7 +202,7 @@ a{color:inherit;text-decoration:none}
 }
 .head.is-stuck{border-bottom-color:var(--rule)}
 .mark{
-  font-weight:800;font-size:clamp(17px,2.4vw,22px);letter-spacing:-.028em;
+  font-weight:800;font-size:clamp(16px,4.2vw,22px);letter-spacing:-.028em;
   text-transform:uppercase;line-height:1;white-space:nowrap;
 }
 .burger{background:none;border:0;padding:10px;margin-right:-10px;cursor:pointer;display:block}
@@ -201,6 +212,7 @@ a{color:inherit;text-decoration:none}
 /* ---------- overlay nav ---------- */
 .nav{
   position:fixed;inset:0;z-index:150;background:var(--paper);
+  height:100dvh;
   padding:0 var(--pad);display:flex;flex-direction:column;
   transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.2,1);
   overflow-y:auto;
@@ -218,13 +230,32 @@ a{color:inherit;text-decoration:none}
 .nav__foot{margin-top:auto;padding:24px 0 34px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 22px}
 
 /* ---------- hero ---------- */
-.hero{position:relative}
-.hero img{width:100%;height:min(74vh,660px);object-fit:cover;object-position:50% 42%}
+.hero{position:relative;background:#f7f7f7}
+.hero img{
+  width:100%;
+  height:clamp(300px,52vh,560px);
+  object-fit:cover;object-position:50% 42%;
+}
+@media(min-width:860px){.hero img{height:min(68vh,620px)}}
+@media(min-width:860px){:root{--head-h:64px}}
+/* Use <div class="hero hero--contain"> when the hero image must be seen whole
+   (a logo, a wide piece of artwork) rather than cropped to fill. */
+.hero--contain{background:#fff}
+.hero--contain img{
+  height:auto;max-height:clamp(240px,46vh,520px);
+  object-fit:contain;object-position:50% 50%;
+  margin:0 auto;padding:clamp(14px,3vw,32px) var(--pad) 0;
+}
 .hero::after{
   content:"";position:absolute;left:0;right:0;bottom:-1px;height:110px;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271200%27%20height%3D%27110%27%20viewBox%3D%270%200%201200%20110%27%3E%3Cpath%20fill%3D%27%23ffffff%27%20fill-rule%3D%27evenodd%27%20d%3D%27M0%20110%20L0%2026%20L46%2026%20L46%2066.0%20A18.0%2018.0%200%200%200%2082%2066.0%20L82%2026%20L140%2026%20L140%2049.0%20A11.0%2011.0%200%200%200%20162%2049.0%20L162%2026%20L226%2026%20L226%2078.0%20A24.0%2024.0%200%200%200%20274%2078.0%20L274%2026%20L352%2026%20L352%2057.0%20A13.0%2013.0%200%200%200%20378%2057.0%20L378%2026%20L452%2026%20L452%2040.0%20A10.0%2010.0%200%200%200%20472%2040.0%20L472%2026%20L536%2026%20L536%2071.0%20A21.0%2021.0%200%200%200%20578%2071.0%20L578%2026%20L650%2026%20L650%2048.0%20A14.0%2014.0%200%200%200%20678%2048.0%20L678%2026%20L742%2026%20L742%2065.0%20A11.0%2011.0%200%200%200%20764%2065.0%20L764%2026%20L826%2026%20L826%2063.0%20A23.0%2023.0%200%200%200%20872%2063.0%20L872%2026%20L944%2026%20L944%2042.0%20A12.0%2012.0%200%200%200%20968%2042.0%20L968%2026%20L1016%2026%20L1016%2080.0%20A18.0%2018.0%200%200%200%201052%2080.0%20L1052%2026%20L1116%2026%20L1116%2057.0%20A11.0%2011.0%200%200%200%201138%2057.0%20L1138%2026%20L1200%2026%20L1200%20110%20Z%20M237%2096%20a7%207%200%201%200%2014%200%20a7%207%200%201%200%20-14%200%20Z%20M838.5%2084%20a5.5%205.5%200%201%200%2011.0%200%20a5.5%205.5%200%201%200%20-11.0%200%20Z%20M1028%2098%20a6%206%200%201%200%2012%200%20a6%206%200%201%200%20-12%200%20Z%27%2F%3E%3C%2Fsvg%3E");
   background-repeat:repeat-x;background-position:bottom center;background-size:1200px 110px;
 }
+@media(max-width:700px){
+  .hero::after{height:62px;background-size:680px 62px}
+}
+/* The logo artwork already has its own drips — turn the overlay off for it. */
+.hero--contain::after{display:none}
 
 /* ---------- layout ---------- */
 .wrap{padding:0 var(--pad)}
@@ -350,10 +381,10 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 .list p{margin:0 0 20px;color:var(--muted);font-size:15.5px;max-width:52ch}
 .list__form{display:flex;flex-wrap:wrap;gap:10px;max-width:520px}
 .list__form input{
-  flex:1 1 240px;font:inherit;font-size:15.5px;padding:12px 16px;
+  flex:1 1 240px;font:inherit;font-size:16px;padding:13px 18px;
   border:1px solid var(--ink);border-radius:999px;background:#fff;color:var(--ink);min-width:0;
 }
-.list__form input::placeholder{color:#9a9a9a}
+.list__form input::placeholder{color:var(--muted)}  /* #9a9a9a failed AA */
 .list__msg{margin:14px 0 0;font-size:14.5px;font-weight:600;display:none}
 .list__msg.is-on{display:block}
 
@@ -372,6 +403,105 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 .feed__fallback{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.2vw,14px)}
 @media(min-width:700px){.feed__fallback{grid-template-columns:repeat(6,1fr)}}
 .feed__fallback img{width:100%;aspect-ratio:1/1;object-fit:cover}
+
+/* ============================================================
+   MOBILE OPTIMISATION
+   ============================================================ */
+
+/* Nothing may push the page sideways */
+html,body{overflow-x:hidden;max-width:100%}
+.wrap,.sec,.quote,.foot{max-width:100%}
+
+/* Kill the blue tap flash, keep taps responsive */
+a,button,input,summary{-webkit-tap-highlight-color:transparent}
+
+/* Every interactive target clears the 44px minimum */
+.btn{min-height:46px;display:inline-flex;align-items:center;justify-content:center}
+.acc__btn{min-height:52px}
+.social,.dl a{min-height:64px}
+.burger{min-width:48px;min-height:48px;display:flex;flex-direction:column;justify-content:center;align-items:flex-end}
+.nav__close{min-width:48px;min-height:48px}
+.top{width:52px;height:52px}
+.mark{display:inline-flex;align-items:center;min-height:44px}
+.nav__list a{padding:6px 0;min-height:46px;align-items:center}
+.nav__list a i{transform:none}
+.nav__foot a{padding:11px 0;display:inline-block;min-height:44px}
+.big-link{padding:5px 0 7px;min-height:44px}
+
+@media(max-width:760px){
+  /* Footer links are 16px tall by default — far too small to hit reliably */
+  .foot li{margin-bottom:0}
+  .foot li a{display:inline-block;padding:11px 0;min-height:44px}
+  .foot__base a{display:inline-block;padding:8px 0}
+}
+
+/* Respect the notch and the home indicator */
+.head{padding-left:max(var(--pad),env(safe-area-inset-left));padding-right:max(var(--pad),env(safe-area-inset-right))}
+.foot{padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+.top{bottom:calc(clamp(16px,3vw,30px) + env(safe-area-inset-bottom))}
+
+/* Long words and email addresses must never force a scrollbar */
+.big-link,.meta a,.foot a,.prose{overflow-wrap:break-word;word-break:break-word}
+.big-link{font-size:clamp(21px,6.2vw,44px)}
+
+@media(max-width:700px){
+  /* Buy rows stack: size and price on one line, button full width beneath */
+  .buy__row{flex-direction:column;align-items:stretch;gap:4px;padding:18px 0}
+  .buy__size{min-width:0}
+  .buy__desc{flex:none}
+  .buy__price{min-width:0;margin-bottom:10px}
+  .buy__row .btn{width:100%}
+
+  /* Email signup: input and button full width, never cramped */
+  .list__form{flex-direction:column}
+  .list__form input,.list__form button{width:100%}
+
+  /* Socials and downloads read better as single column rows */
+  .social,.dl a{padding:20px 18px}
+
+  /* Feed strip: 3 across is plenty on a phone */
+  .feed__fallback{grid-template-columns:repeat(3,1fr)}
+
+  /* Tighten the vertical rhythm so the page isn't endless */
+  .sec{padding:clamp(40px,10vw,64px) 0}
+}
+
+/* Short phones in landscape, and small devices: shrink the overlay menu
+   so the wordmark and close button stay visible at the top */
+@media(max-height:720px){
+  .nav__list{padding:clamp(10px,3vh,28px) 0 24px;gap:2px}
+  .nav__list a{font-size:clamp(23px,5.4vh,38px)}
+  .nav__foot{padding:16px 0 22px}
+}
+@media(max-width:360px){
+  .nav__list a{font-size:27px}
+  .mark{font-size:15px}
+}
+
+/* ---------- sticky mobile CTA ---------- */
+.cta-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:95;display:none;gap:10px;
+  padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+  transform:translateY(110%);transition:transform .3s cubic-bezier(.2,.7,.3,1);
+}
+.cta-bar.is-on{transform:none}
+.cta-bar .btn{flex:1;padding:12px 10px;font-size:14px}
+@media(max-width:760px){
+  .cta-bar{display:flex}
+  .cta-bar.is-on ~ .top{bottom:calc(78px + env(safe-area-inset-bottom))}
+}
+
+/* ---------- trust strip ---------- */
+.trust{
+  list-style:none;margin:clamp(30px,4vw,44px) 0 0;padding:0;
+  display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+}
+@media(min-width:700px){.trust{grid-template-columns:repeat(4,1fr)}}
+.trust li{background:var(--paper);padding:20px 18px}
+.trust b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.015em;margin-bottom:3px}
+.trust span{font-size:13.5px;color:var(--muted);line-height:1.5}
 
 /* ---------- to top ---------- */
 .top{
@@ -434,7 +564,9 @@ html{scroll-behavior:smooth}
 
   <!-- ===================== HERO ===================== -->
   <div class="hero">
-    <img src="images/hero.jpg" width="1920" height="1080" fetchpriority="high"
+    <img src="images/hero-1280.webp"
+         srcset="images/hero-800.webp 800w, images/hero-1280.webp 1280w, images/hero-1920.webp 1920w"
+         sizes="100vw" width="1920" height="1080" fetchpriority="high" decoding="async"
          alt="A pencil-drawn lion's head surrounded by a crowd of hand-drawn marker animals and characters, artwork by Charlie C of CC Illustrations.">
   </div>
 
@@ -463,6 +595,21 @@ html{scroll-behavior:smooth}
           <p>Picture books · Book covers · Character design · Murals · Apparel graphics · Editorial · Commissioned portraits</p>
         </aside>
       </div>
+
+      <ul class="trust rv">
+        <li><b>Drawn by hand</b><span>Fineliner and alcohol marker. Nothing generated, traced or filled by a machine.</span></li>
+        <li><b>You approve the sketch</b><span>Nothing is inked until you've seen the pencils and said yes.</span></li>
+        <li><b>Ships worldwide</b><span>Prints rolled in a rigid tube. UK and Ireland in 3–5 working days.</span></li>
+        <li><b>Replies within two days</b><span>Every enquiry gets an answer, not an auto-responder.</span></li>
+      </ul>
+
+      <!-- TESTIMONIALS — add real quotes here once Charlie has permission to use them.
+           Left empty deliberately: invented testimonials are a legal and trust risk.
+           Three or four is plenty. Format:
+      <ul class="trust rv" style="margin-top:20px">
+        <li><b>"Short quote from the client."</b><span>Name, what they commissioned</span></li>
+      </ul>
+      -->
     </section>
 
     <!-- ===================== BOOKS ===================== -->
@@ -475,7 +622,7 @@ html{scroll-behavior:smooth}
 
       <a class="tile feature rv" href="#contact" aria-label="My Time Travel Adventure — enquire">
         <figure>
-          <img src="images/b1.jpg" width="1200" height="675" loading="lazy"
+          <img src="images/b1-800.webp" srcset="images/b1-400.webp 400w, images/b1-800.webp 800w" sizes="100vw" width="1200" height="675" loading="lazy"
                alt="A spread from My Time Travel Adventure showing a boy laughing among brightly coloured hand-drawn creatures and planets.">
         </figure>
       </a>
@@ -542,42 +689,42 @@ html{scroll-behavior:smooth}
       <div class="grid">
         <a class="tile rv" href="#contact">
           <figure>
-            <img src="images/a1.jpg" width="800" height="920" loading="lazy"
+            <img src="images/a1-800.webp" srcset="images/a1-400.webp 400w, images/a1-800.webp 800w" sizes="(min-width:860px) 33vw, 50vw" width="800" height="920" loading="lazy"
                  alt="Illustration of a giant open-mouthed creature towering over a mountain of discarded objects, drawn in fineliner and marker.">
             <figcaption>The Waste Pile<span>Original · Fineliner &amp; marker</span></figcaption>
           </figure>
         </a>
         <a class="tile rv" href="#contact">
           <figure>
-            <img src="images/a2.jpg" width="800" height="920" loading="lazy"
+            <img src="images/a2-800.webp" srcset="images/a2-400.webp 400w, images/a2-800.webp 800w" sizes="(min-width:860px) 33vw, 50vw" width="800" height="920" loading="lazy"
                  alt="Underwater illustration packed with sharks, a turtle, an octopus, a submarine and a diver among coral and litter.">
             <figcaption>Down There<span>Original · Fineliner &amp; marker</span></figcaption>
           </figure>
         </a>
         <a class="tile rv" href="#contact">
           <figure>
-            <img src="images/a3.jpg" width="800" height="920" loading="lazy"
+            <img src="images/a3-800.webp" srcset="images/a3-400.webp 400w, images/a3-800.webp 800w" sizes="(min-width:860px) 33vw, 50vw" width="800" height="920" loading="lazy"
                  alt="A graphite lion's head framed by hand-drawn marker animals including elephants, a crocodile and a rhino.">
             <figcaption>Pride<span>Original · Graphite &amp; marker</span></figcaption>
           </figure>
         </a>
         <a class="tile rv" href="#clothing">
           <figure>
-            <img src="images/b2.jpg" width="800" height="920" loading="lazy"
+            <img src="images/b2-800.webp" srcset="images/b2-400.webp 400w, images/b2-800.webp 800w" sizes="(min-width:860px) 33vw, 50vw" width="800" height="920" loading="lazy"
                  alt="A white t-shirt on a mannequin printed with a small green hand-drawn dinosaur character wearing a hat.">
             <figcaption>Dino Tee<span>Apparel graphic</span></figcaption>
           </figure>
         </a>
         <a class="tile rv" href="#commissions">
           <figure>
-            <img src="images/b3.jpg" width="800" height="920" loading="lazy"
+            <img src="images/b3-800.webp" srcset="images/b3-400.webp 400w, images/b3-800.webp 800w" sizes="(min-width:860px) 33vw, 50vw" width="800" height="920" loading="lazy"
                  alt="A cut-out commissioned portrait of a bearded football supporter in a red kit, with dozens of tiny faces drawn into his hair.">
             <figcaption>The Kop<span>Commissioned portrait · Cut-out</span></figcaption>
           </figure>
         </a>
         <a class="tile rv" href="#books">
           <figure>
-            <img src="images/b1.jpg" width="800" height="920" loading="lazy"
+            <img src="images/b1-800.webp" srcset="images/b1-400.webp 400w, images/b1-800.webp 800w" sizes="(min-width:860px) 33vw, 50vw" width="800" height="920" loading="lazy"
                  alt="Cover artwork for My Time Travel Adventure, showing a grinning boy surrounded by colourful creatures and planets.">
             <figcaption>My Time Travel Adventure<span>Picture book · 2026</span></figcaption>
           </figure>
@@ -683,7 +830,7 @@ html{scroll-behavior:smooth}
       <div class="stack stack--2">
         <div class="rv">
           <figure style="margin:0;overflow:hidden;background:#f4f4f4">
-            <img src="images/b2.jpg" width="800" height="920" loading="lazy"
+            <img src="images/b2-800.webp" srcset="images/b2-400.webp 400w, images/b2-800.webp 800w" sizes="(min-width:860px) 33vw, 50vw" width="800" height="920" loading="lazy"
                  alt="White t-shirt printed with a hand-drawn green dinosaur character in a top hat.">
           </figure>
         </div>
@@ -742,12 +889,12 @@ html{scroll-behavior:smooth}
              The static strip below is the fallback and can be deleted once the embed is live. -->
         <div class="feed__slot" id="feedSlot"></div>
         <div class="feed__fallback">
-          <img src="images/a1.jpg" width="400" height="400" loading="lazy" alt="Detail from an original CC Illustrations piece.">
-          <img src="images/a2.jpg" width="400" height="400" loading="lazy" alt="Detail from an underwater illustration by Charlie C.">
-          <img src="images/a3.jpg" width="400" height="400" loading="lazy" alt="Detail from a lion illustration by Charlie C.">
-          <img src="images/b1.jpg" width="400" height="400" loading="lazy" alt="Detail from My Time Travel Adventure.">
-          <img src="images/b2.jpg" width="400" height="400" loading="lazy" alt="A printed CC Illustrations t-shirt.">
-          <img src="images/b3.jpg" width="400" height="400" loading="lazy" alt="A commissioned cut-out portrait by Charlie C.">
+          <img src="images/a1-400.webp" sizes="(min-width:700px) 16vw, 33vw" width="400" height="400" loading="lazy" alt="Detail from an original CC Illustrations piece.">
+          <img src="images/a2-400.webp" sizes="(min-width:700px) 16vw, 33vw" width="400" height="400" loading="lazy" alt="Detail from an underwater illustration by Charlie C.">
+          <img src="images/a3-400.webp" sizes="(min-width:700px) 16vw, 33vw" width="400" height="400" loading="lazy" alt="Detail from a lion illustration by Charlie C.">
+          <img src="images/b1-400.webp" sizes="(min-width:700px) 16vw, 33vw" width="400" height="400" loading="lazy" alt="Detail from My Time Travel Adventure.">
+          <img src="images/b2-400.webp" sizes="(min-width:700px) 16vw, 33vw" width="400" height="400" loading="lazy" alt="A printed CC Illustrations t-shirt.">
+          <img src="images/b3-400.webp" sizes="(min-width:700px) 16vw, 33vw" width="400" height="400" loading="lazy" alt="A commissioned cut-out portrait by Charlie C.">
         </div>
       </div>
 
@@ -805,7 +952,7 @@ html{scroll-behavior:smooth}
 </main>
 
 <footer class="foot">
-  <img class="foot__logo" src="images/cc-logo.jpg" width="1448" height="1086" decoding="async"
+  <img class="foot__logo" src="images/cc-logo-420.webp" srcset="images/cc-logo-420.webp 420w, images/cc-logo-840.webp 840w" sizes="(min-width:760px) 420px, 78vw" width="1448" height="1086" decoding="async"
        alt="CC Illustrations logo: hand-drawn monsters and characters wrapped around dripping bubble lettering.">
   <div class="foot__grid">
     <div>
@@ -859,13 +1006,18 @@ html{scroll-behavior:smooth}
   </div>
 </footer>
 
+<div class="cta-bar" id="ctaBar">
+  <a class="btn" href="#contact">Start a project</a>
+  <a class="btn btn--ghost" href="#prints">Buy a print</a>
+</div>
+
 <button class="top" id="toTop" aria-label="Back to top">&#8593;</button>
 
 <script>
 (function(){
   var head=document.getElementById('head'),nav=document.getElementById('nav'),
       burger=document.getElementById('burger'),close=document.getElementById('navClose'),
-      toTop=document.getElementById('toTop');
+      toTop=document.getElementById('toTop'),ctaBar=document.getElementById('ctaBar');
 
   document.getElementById('yr').textContent=new Date().getFullYear();
 
@@ -884,6 +1036,7 @@ html{scroll-behavior:smooth}
     var y=window.scrollY;
     head.classList.toggle('is-stuck',y>8);
     toTop.classList.toggle('is-on',y>600);
+    if(ctaBar)ctaBar.classList.toggle('is-on',y>700);
   },{passive:true});
 
   toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
