@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://www.ccillustrations.com/</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://www.ccillustrations.com/images/hero.jpg</image:loc>
-      <image:title>Pride — original artwork by Charlie C</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.ccillustrations.com/images/cc-logo.jpg</image:loc>
-      <image:title>CC Illustrations logo</image:title>
-    </image:image>
+    <image:image><image:loc>https://www.ccillustrations.com/images/gallery-install.jpg</image:loc><image:title>CC Illustrations gallery hang</image:title></image:image>
+    <image:image><image:loc>https://www.ccillustrations.com/images/book-covers.jpg</image:loc><image:title>My Time Travel Adventure by Charlie Cully</image:title></image:image>
+    <image:image><image:loc>https://www.ccillustrations.com/images/prints-wall.jpg</image:loc><image:title>Framed original works by Charlie Cully</image:title></image:image>
+    <image:image><image:loc>https://www.ccillustrations.com/images/billboard.jpg</image:loc><image:title>Large format artwork by Charlie Cully</image:title></image:image>
+    <image:image><image:loc>https://www.ccillustrations.com/images/cc-logo.jpg</image:loc><image:title>CC Illustrations logo</image:title></image:image>
+    <video:video>
+      <video:thumbnail_loc>https://www.ccillustrations.com/images/animation-poster.jpg</video:thumbnail_loc>
+      <video:title>CC Illustrations logo animation</video:title>
+      <video:description>An animated build of the CC Illustrations identity, resolving from a pair of eyes into the full hand-drawn logo.</video:description>
+      <video:content_loc>https://www.ccillustrations.com/images/animation.mp4</video:content_loc>
+      <video:duration>10</video:duration>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://www.ccillustrations.com/privacy.html</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

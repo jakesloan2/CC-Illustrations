@@ -7,7 +7,18 @@
 <meta name="description" content="That page could not be found. Head back to CC Illustrations for books, prints, commissions and school visits by Charlie Cully.">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="images/favicon.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CC Illustrations">
+<meta property="og:title" content="Page not found | CC Illustrations">
+<meta property="og:description" content="That page could not be found.">
+<meta property="og:image" content="https://www.ccillustrations.com/images/og-cc-illustrations.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.ccillustrations.com/images/og-cc-illustrations.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preload" as="font" type="font/woff2" href="fonts/figtree-var.woff2" crossorigin>
 <style>
 /* Self-hosted variable font — one 20KB file covers weights 300-900. */
@@ -159,6 +170,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 /* ---------- work grid ---------- */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(10px,1.6vw,20px);margin-top:8px}
 .grid--2{grid-template-columns:repeat(2,1fr)}
+.grid--2 .tile img{aspect-ratio:4/5;object-position:50% 38%}
 @media(min-width:860px){.grid{grid-template-columns:repeat(3,1fr)}.grid--2{grid-template-columns:repeat(2,1fr)}}
 .tile{display:block}
 .tile figure{margin:0;overflow:hidden;background:#f4f4f4}
@@ -201,6 +213,12 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
   .lightbox__prev{left:8px}.lightbox__next{right:8px}
   .lightbox__cap{padding:0 20px;font-size:13px}
 }
+
+/* ---------- identity animation (sits above the enquire block) ---------- */
+.ident{margin:0 0 clamp(26px,3vw,36px);background:#f2f2f2}
+.ident video{width:100%;display:block}
+.ident figcaption{padding:12px 2px 0;font-size:13.5px;color:var(--muted);line-height:1.5}
+@media(min-width:860px){.ident{margin-top:6px}}
 
 /* ---------- video ---------- */
 .vid{background:#f2f2f2;display:grid;place-items:center;padding:clamp(20px,4vw,56px)}
@@ -355,7 +373,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
   </ul>
   <div class="nav__foot">
     <span>Northern Ireland</span>
-    <a href="mailto:hello@ccillustrations.com">hello@ccillustrations.com</a>
+    <a href="mailto:charliecully547@gmail.com">charliecully547@gmail.com</a>
     <a href="https://www.instagram.com/ccillustrations/" rel="me noopener" target="_blank">@ccillustrations</a>
   </div>
 </nav>
@@ -387,7 +405,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
       <ul>
         <li>CC Illustrations</li>
         <li>Northern Ireland</li>
-        <li><a href="mailto:hello@ccillustrations.com">hello@ccillustrations.com</a></li>
+        <li><a href="mailto:charliecully547@gmail.com">charliecully547@gmail.com</a></li>
       </ul>
     </div>
     <div>
@@ -420,8 +438,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
       <h4>Follow</h4>
       <ul>
         <li><a href="https://www.instagram.com/ccillustrations/" rel="me noopener" target="_blank">Instagram</a></li>
-        <li><a href="https://www.tiktok.com/@ccillustrations" rel="me noopener" target="_blank">TikTok</a></li>
-        <li><a href="https://www.facebook.com/ccillustrations" rel="me noopener" target="_blank">Facebook</a></li>
+        <li><a href="https://www.facebook.com/share/197UqMLv6M/" rel="me noopener" target="_blank">Facebook</a></li>
       </ul>
     </div>
   </div>
@@ -433,19 +450,6 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
     <span class="foot__credit">Site by <a href="https://www.apexdesignni.co.uk" rel="noopener" target="_blank">Apex</a>.</span>
   </div>
 </footer>
-
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <button class="lightbox__btn lightbox__close" id="lbClose" aria-label="Close image viewer">&times;</button>
-  <button class="lightbox__btn lightbox__prev" id="lbPrev" aria-label="Previous image">&#8249;</button>
-  <img class="lightbox__img" id="lbImg" alt="">
-  <button class="lightbox__btn lightbox__next" id="lbNext" aria-label="Next image">&#8250;</button>
-  <p class="lightbox__cap" id="lbCap"></p>
-</div>
-
-<div class="cta-bar" id="ctaBar">
-  <a class="btn" href="#contact">Start a project</a>
-  <a class="btn btn--ghost" href="#prints">Buy a print</a>
-</div>
 
 <button class="top" id="toTop" aria-label="Back to top">&#8593;</button>
 <script>
