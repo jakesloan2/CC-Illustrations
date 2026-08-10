@@ -330,7 +330,12 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 }
 
 /* ---------- identity animation (sits above the enquire block) ---------- */
-.ident{margin:0 0 clamp(26px,3vw,36px);background:#f2f2f2}
+.ident{margin:0 0 clamp(26px,3vw,36px);background:#f2f2f2;position:relative}
+.ident__play{position:absolute;left:50%;top:calc(50% - 14px);transform:translate(-50%,-50%);
+  width:64px;height:64px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(16,16,16,.82);color:#fff;display:grid;place-items:center;padding:0 0 0 3px}
+.ident__play[hidden]{display:none}
+.ident__play:hover{background:var(--ink)}
 .ident video{width:100%;display:block}
 .ident figcaption{padding:12px 2px 0;font-size:13.5px;color:var(--muted);line-height:1.5}
 @media(min-width:860px){.ident{margin-top:6px}}
@@ -508,7 +513,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
     <!-- ===================== THE ARTIST ===================== -->
     <section class="sec" id="artist" aria-labelledby="artist-h">
       <h1 id="artist-h">Charlie Cully</h1>
-      <p class="lede">Children's book illustrator. Fineliner, marker, and far too many characters per page.</p>
+      <p class="lede">Hand-drawn worlds you can get lost in. Fineliner, marker, and a story behind each and every character.</p>
 
       <div class="cols cols--bio">
         <div class="prose rv">
@@ -519,12 +524,15 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 
         <aside class="rv">
           <figure class="ident" id="identity">
-            <video id="identVid" muted loop playsinline preload="none"
+            <video id="identVid" autoplay muted loop playsinline webkit-playsinline preload="metadata"
                    poster="images/animation-poster.jpg" width="900" height="1125"
                    aria-label="Animated build of the CC Illustrations logo, ten seconds, no sound.">
               <source src="images/animation.mp4" type="video/mp4">
               <source src="images/animation.webm" type="video/webm">
             </video>
+            <button class="ident__play" id="identPlay" type="button" aria-label="Play the logo animation" hidden>
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
             <figcaption>Two eyes, a heart, a monogram, then the whole hand-drawn mark.</figcaption>
           </figure>
 
@@ -795,17 +803,17 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
       </div>
 
       <div class="grid grid--2">
-        <button class="tile lb rv" data-src="images/tee-monster.jpg" data-cap="Ball Cap Monster tee — heavyweight organic cotton" type="button">
+        <button class="tile lb rv" data-src="images/tee-monster.jpg" data-cap="Ball Cap Monster tee — kids' range, heavyweight organic cotton" type="button">
           <figure>
             <img src="images/tee-monster.jpg" width="1000" height="1248" loading="lazy"
-                 alt="A model wearing a white CC Illustrations t-shirt printed with a blue hand-drawn monster in a red baseball cap.">
+                 alt="A child wearing a white CC Illustrations t-shirt printed with a blue hand-drawn monster in a red baseball cap.">
             <figcaption>Ball Cap Monster<span>Heavyweight organic cotton tee</span></figcaption>
           </figure>
         </button>
         <button class="tile lb rv" data-src="images/tee-dino.jpg" data-cap="Top Hat Dino tee — heavyweight organic cotton" type="button">
           <figure>
             <img src="images/tee-dino.jpg" width="1000" height="1315" loading="lazy"
-                 alt="A model wearing a white CC Illustrations t-shirt printed with a green dinosaur in a top hat and red bow tie.">
+                 alt="A woman wearing a white CC Illustrations t-shirt printed with a green dinosaur in a top hat and red bow tie.">
             <figcaption>Top Hat Dino<span>Heavyweight organic cotton tee</span></figcaption>
           </figure>
         </button>
@@ -1096,20 +1104,58 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
     if(Math.abs(d)>50)lbShow(d>0?lbIndex-1:lbIndex+1);
   },{passive:true});
 
-  /* Identity animation: plays silently when it scrolls into view, pauses when it
-     leaves so it costs nothing off-screen. Reduced-motion users get controls instead. */
-  var iv=document.getElementById('identVid');
+  /* Identity animation. Desktop autoplays happily; mobile is stricter — iOS needs
+     muted + playsinline AND the media loaded before play() will resolve, and it
+     refuses outright in Low Power Mode. So: load on approach, then play, and if the
+     browser still says no, show a tap-to-play button rather than a dead poster. */
+  var iv=document.getElementById('identVid'), ivBtn=document.getElementById('identPlay');
   if(iv){
-    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduce){iv.setAttribute('controls','');}
-    else if('IntersectionObserver' in window){
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches, tried=false,
+        touch=window.matchMedia('(hover: none)').matches;
+
+    function ivFail(){ if(ivBtn)ivBtn.hidden=false; iv.setAttribute('controls',''); }
+    function ivTry(){
+      iv.muted=true;                       // must be set in JS too for iOS
+      var pr=iv.play();
+      if(pr&&pr.catch)pr.catch(ivFail);
+    }
+    function ivStart(){
+      if(iv.preload!=='auto'){iv.preload='auto';}
+      if(iv.readyState<2){                 // not enough data yet — load first
+        if(!tried){tried=true;iv.load();}
+        iv.addEventListener('loadeddata',ivTry,{once:true});
+        setTimeout(function(){if(iv.paused)ivTry();},600);
+      }else{ivTry();}
+    }
+
+    if(ivBtn)ivBtn.addEventListener('click',function(){ivBtn.hidden=true;iv.play();});
+
+    if(!reduce){
+      var kick=function(){
+        if(iv.paused&&isNear()){ivTry();}
+        window.removeEventListener('touchstart',kick);
+        window.removeEventListener('scroll',kick);
+      };
+      var isNear=function(){
+        var r=iv.getBoundingClientRect();
+        return r.top<window.innerHeight&&r.bottom>0;
+      };
+      window.addEventListener('touchstart',kick,{once:true,passive:true});
+      window.addEventListener('scroll',kick,{once:true,passive:true});
+    }
+
+    if(reduce){
+      iv.removeAttribute('autoplay');
+      iv.pause();
+      iv.setAttribute('controls','');
+    }else if('IntersectionObserver' in window){
       new IntersectionObserver(function(es){
         es.forEach(function(e){
-          if(e.isIntersecting){iv.play().catch(function(){iv.setAttribute('controls','')});}
-          else{iv.pause();}
+          if(e.isIntersecting){ivStart();}
+          else if(!iv.paused&&!touch){iv.pause();}
         });
-      },{threshold:.35}).observe(iv);
-    }else{iv.setAttribute('controls','');}
+      },{threshold:.25,rootMargin:'200px 0px'}).observe(iv);
+    }else{ivFail();}
   }
 
   if('IntersectionObserver' in window){
