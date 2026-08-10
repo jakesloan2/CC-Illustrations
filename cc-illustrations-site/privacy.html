@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy | CC Illustrations</title>
+<meta name="description" content="How CC Illustrations handles personal information. No tracking cookies, nothing sold on, and your rights under UK GDPR explained plainly.">
+<link rel="canonical" href="https://www.ccillustrations.com/privacy.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CC Illustrations">
+<meta property="og:title" content="Privacy policy | CC Illustrations">
+<meta property="og:description" content="How CC Illustrations handles personal information.">
+<meta property="og:image" content="https://www.ccillustrations.com/images/og-cc-illustrations.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.ccillustrations.com/images/og-cc-illustrations.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" as="font" type="font/woff2" href="fonts/figtree-var.woff2" crossorigin>
+<style>
+/* Self-hosted variable font — one 20KB file covers weights 300-900. */
+@font-face{
+  font-family:"Figtree";font-style:normal;font-weight:300 900;font-display:swap;
+  src:url("fonts/figtree-var.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"Figtree";font-style:italic;font-weight:300 900;font-display:swap;
+  src:url("fonts/figtree-var-italic.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* ============================================================
+   CC ILLUSTRATIONS
+   ink #101010 / paper #fff / rule #e4e4e4 / muted #6e6e6e
+   slate #6b6b6b (pull-quote, AA verified) + artwork accents
+   ============================================================ */
+:root{
+  --ink:#101010; --paper:#ffffff; --rule:#e4e4e4; --muted:#6e6e6e; --slate:#6b6b6b;
+  --lime:#7dc242; --pink:#e5007d; --cyan:#26a9e0; --orange:#f26522; --yellow:#ffc20e;
+  --pad:clamp(18px,5vw,64px); --head-h:60px;
+}
+@media(min-width:860px){:root{--head-h:64px}}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html,body{overflow-x:hidden;max-width:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:17px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased;
+}
+img,video{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+a,button,input{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:0}
+
+/* ---------- header ---------- */
+.head{
+  position:sticky;top:0;z-index:100;background:var(--paper);height:var(--head-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding-left:max(var(--pad),env(safe-area-inset-left));
+  padding-right:max(var(--pad),env(safe-area-inset-right));
+  border-bottom:1px solid transparent;transition:border-color .25s;
+}
+.head.is-stuck{border-bottom-color:var(--rule)}
+.mark{
+  font-weight:800;font-size:clamp(16px,4.2vw,22px);letter-spacing:-.028em;
+  text-transform:uppercase;line-height:1;white-space:nowrap;
+  display:inline-flex;align-items:center;min-height:44px;
+}
+.burger{background:none;border:0;padding:10px;margin-right:-10px;cursor:pointer;
+  min-width:48px;min-height:48px;display:flex;flex-direction:column;justify-content:center;align-items:flex-end}
+.burger span{display:block;width:30px;height:2.5px;background:var(--ink);border-radius:2px}
+.burger span+span{margin-top:7px}
+
+/* ---------- overlay nav ---------- */
+.nav{
+  position:fixed;inset:0;z-index:150;background:var(--paper);height:100dvh;
+  padding:0 var(--pad);display:flex;flex-direction:column;overflow-y:auto;
+  transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.2,1);
+}
+.nav.is-open{transform:none}
+.nav__top{height:var(--head-h);display:flex;align-items:center;justify-content:space-between;flex:none}
+.nav__close{background:none;border:0;font-size:34px;line-height:1;cursor:pointer;font-weight:300;min-width:48px;min-height:48px}
+.nav__list{list-style:none;margin:0;padding:clamp(16px,6vh,56px) 0 40px;display:flex;flex-direction:column;gap:clamp(4px,1.4vh,12px)}
+.nav__list a{
+  display:flex;align-items:center;gap:14px;padding:6px 0;min-height:46px;
+  font-size:clamp(30px,7.4vw,60px);font-weight:800;letter-spacing:-.035em;line-height:1.12;
+}
+.nav__list a i{width:9px;height:9px;flex:none}
+.nav__list a:hover{color:var(--muted)}
+.nav__foot{margin-top:auto;padding:24px 0 34px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 22px}
+.nav__foot a{padding:11px 0;display:inline-block;min-height:44px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:#f7f7f7}
+.hero img{width:100%;height:clamp(300px,54vh,600px);object-fit:cover;object-position:50% 50%}
+@media(min-width:860px){.hero img{height:min(70vh,640px)}}
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:110px;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271200%27%20height%3D%27110%27%20viewBox%3D%270%200%201200%20110%27%3E%3Cpath%20fill%3D%27%23ffffff%27%20fill-rule%3D%27evenodd%27%20d%3D%27M0%20110%20L0%2026%20L46%2026%20L46%2066%20A18%2018%200%200%200%2082%2066%20L82%2026%20L140%2026%20L140%2049%20A11%2011%200%200%200%20162%2049%20L162%2026%20L226%2026%20L226%2078%20A24%2024%200%200%200%20274%2078%20L274%2026%20L352%2026%20L352%2057%20A13%2013%200%200%200%20378%2057%20L378%2026%20L452%2026%20L452%2040%20A10%2010%200%200%200%20472%2040%20L472%2026%20L536%2026%20L536%2071%20A21%2021%200%200%200%20578%2071%20L578%2026%20L650%2026%20L650%2048%20A14%2014%200%200%200%20678%2048%20L678%2026%20L742%2026%20L742%2065%20A11%2011%200%200%200%20764%2065%20L764%2026%20L826%2026%20L826%2063%20A23%2023%200%200%200%20872%2063%20L872%2026%20L944%2026%20L944%2042%20A12%2012%200%200%200%20968%2042%20L968%2026%20L1016%2026%20L1016%2080%20A18%2018%200%200%200%201052%2080%20L1052%2026%20L1116%2026%20L1116%2057%20A11%2011%200%200%200%201138%2057%20L1138%2026%20L1200%2026%20L1200%20110%20Z%20M244%2096%20a7%207%200%201%200%2014%200%20a7%207%200%201%200%20-14%200%20Z%20M844%2084%20a5.5%205.5%200%201%200%2011%200%20a5.5%205.5%200%201%200%20-11%200%20Z%20M1034%2098%20a6%206%200%201%200%2012%200%20a6%206%200%201%200%20-12%200%20Z%27%2F%3E%3C%2Fsvg%3E");
+  background-repeat:repeat-x;background-position:bottom center;background-size:1200px 110px;
+}
+@media(max-width:700px){.hero::after{height:62px;background-size:680px 62px}}
+
+/* ---------- layout ---------- */
+.wrap{padding:0 var(--pad)}
+.sec{padding:clamp(52px,8vw,96px) 0;border-top:1px solid var(--rule)}
+.sec:first-of-type{border-top:0}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 22px}
+.eyebrow i{width:8px;height:8px;flex:none}
+h1{font-size:clamp(40px,8.4vw,84px);font-weight:800;letter-spacing:-.04em;line-height:1.02;margin:clamp(34px,5vw,54px) 0 6px}
+h2{font-size:clamp(27px,4.6vw,46px);font-weight:800;letter-spacing:-.035em;line-height:1.08;margin:0 0 20px}
+h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin:0 0 8px}
+.lede{font-size:clamp(17px,1.9vw,20px);color:var(--muted);margin:0 0 clamp(28px,4vw,44px);max-width:36ch;letter-spacing:-.012em}
+.prose{max-width:64ch;overflow-wrap:break-word}
+.prose p{margin:0 0 1.15em}
+.prose em{font-style:italic}
+.cols{display:grid;gap:clamp(28px,4vw,56px)}
+@media(min-width:860px){
+  .cols--2{grid-template-columns:1.35fr 1fr}
+  .cols--bio{grid-template-columns:1.6fr .9fr}
+}
+
+/* ---------- meta ---------- */
+.meta{font-size:15.5px;line-height:1.85}
+.meta h3{font-size:15.5px;font-weight:800;letter-spacing:0;margin:0 0 10px}
+.meta p{margin:0 0 1.1em;color:var(--muted)}
+.meta a{border-bottom:1px solid var(--ink);color:var(--ink);overflow-wrap:break-word}
+.meta a:hover{border-bottom-color:transparent}
+
+/* ---------- trust ---------- */
+.trust{list-style:none;margin:clamp(30px,4vw,44px) 0 0;padding:0;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media(min-width:700px){.trust{grid-template-columns:repeat(4,1fr)}}
+.trust li{background:var(--paper);padding:20px 18px}
+.trust b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.015em;margin-bottom:3px}
+.trust span{font-size:13.5px;color:var(--muted);line-height:1.5}
+
+/* ---------- accordion ---------- */
+.acc{border-top:1px solid var(--rule);margin-top:36px}
+.acc__item{border-bottom:1px solid var(--rule)}
+.acc__btn{width:100%;background:none;border:0;cursor:pointer;text-align:left;min-height:52px;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:18px 0;font:inherit;font-size:15.5px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.acc__btn::after{content:"+";font-size:22px;font-weight:400;line-height:1;color:var(--muted);flex:none}
+.acc__btn[aria-expanded="true"]::after{content:"–"}
+.acc__panel{display:none;padding:0 0 22px;max-width:62ch;color:var(--muted);font-size:15.5px}
+.acc__panel.is-open{display:block}
+.acc__panel p{margin:0 0 .9em}
+.acc__panel strong{color:var(--ink);font-weight:600}
+.acc__panel ul{margin:0 0 .9em;padding-left:1.1em}
+.acc__panel li{margin-bottom:.35em}
+
+/* ---------- media blocks ---------- */
+.figure{margin:0}
+.figure img,.figure video{width:100%;background:#f4f4f4}
+.figure figcaption{padding:12px 2px 0;font-size:14px;font-weight:600;letter-spacing:-.01em}
+.figure figcaption span{display:block;color:var(--muted);font-weight:400;font-size:13.5px}
+
+/* Stacked media column — the Dutch Uncle "book" treatment */
+.stackmedia .lb{cursor:zoom-in}
+.stackmedia{display:grid;gap:clamp(14px,2.4vw,30px);margin-top:clamp(24px,3.4vw,40px)}
+@media(min-width:860px){.stackmedia{max-width:78%;margin-left:auto;margin-right:auto}}
+
+/* ---------- work grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(10px,1.6vw,20px);margin-top:8px}
+.grid--2{grid-template-columns:repeat(2,1fr)}
+.grid--2 .tile img{aspect-ratio:4/5;object-position:50% 38%}
+@media(min-width:860px){.grid{grid-template-columns:repeat(3,1fr)}.grid--2{grid-template-columns:repeat(2,1fr)}}
+.tile{display:block}
+.tile figure{margin:0;overflow:hidden;background:#f4f4f4}
+.tile img{width:100%;aspect-ratio:4/3.1;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.tile:hover img{transform:scale(1.035)}
+.tile figcaption{padding:12px 2px 0;font-size:14px;font-weight:600;letter-spacing:-.01em}
+.tile figcaption span{display:block;color:var(--muted);font-weight:400;font-size:13.5px}
+.tile--wide{grid-column:1/-1}
+.tile--wide img{aspect-ratio:16/7}
+
+/* ---------- order block (replaces card checkout) ---------- */
+.order{border:1px solid var(--rule);padding:clamp(24px,3.4vw,40px);margin-top:clamp(30px,4vw,44px)}
+.order h3{margin-bottom:6px}
+.order p{margin:0 0 20px;color:var(--muted);font-size:15.5px;max-width:52ch}
+.order__btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn--wa{gap:9px;background:#1f8f4e;border-color:#1f8f4e}
+.btn--wa:hover{background:#fff;color:#1f8f4e}
+@media(max-width:700px){.order__btns{flex-direction:column}.order__btns .btn{width:100%}}
+
+/* ---------- lightbox ---------- */
+.lb{appearance:none;background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;
+  text-align:left;cursor:zoom-in;width:100%;display:block}
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(12,12,12,.94);
+  display:none;align-items:center;justify-content:center;padding:clamp(12px,4vw,56px)}
+.lightbox[open],.lightbox.is-on{display:flex}
+.lightbox__img{max-width:100%;max-height:82vh;object-fit:contain;width:auto;
+  animation:lbin .28s cubic-bezier(.2,.7,.3,1)}
+@keyframes lbin{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.lightbox__cap{position:absolute;left:0;right:0;bottom:max(18px,env(safe-area-inset-bottom));
+  text-align:center;color:#fff;font-size:14px;padding:0 60px;opacity:.85}
+.lightbox__btn{position:absolute;background:rgba(255,255,255,.12);border:0;cursor:pointer;
+  color:#fff;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  font-size:24px;line-height:1;transition:background .2s}
+.lightbox__btn:hover{background:rgba(255,255,255,.25)}
+.lightbox__close{top:max(14px,env(safe-area-inset-top));right:14px;font-size:28px}
+.lightbox__prev{left:14px;top:50%;transform:translateY(-50%)}
+.lightbox__next{right:14px;top:50%;transform:translateY(-50%)}
+@media(max-width:700px){
+  .lightbox__btn{width:46px;height:46px}
+  .lightbox__prev{left:8px}.lightbox__next{right:8px}
+  .lightbox__cap{padding:0 20px;font-size:13px}
+}
+
+/* ---------- identity animation (sits above the enquire block) ---------- */
+.ident{margin:0 0 clamp(26px,3vw,36px);background:#f2f2f2}
+.ident video{width:100%;display:block}
+.ident figcaption{padding:12px 2px 0;font-size:13.5px;color:var(--muted);line-height:1.5}
+@media(min-width:860px){.ident{margin-top:6px}}
+
+/* ---------- video ---------- */
+.vid{background:#f2f2f2;display:grid;place-items:center;padding:clamp(20px,4vw,56px)}
+.vid video{max-width:min(420px,80vw);width:100%}
+
+/* ---------- pull quote ---------- */
+.quote{background:var(--slate);color:#fff;padding:clamp(46px,7vw,88px) var(--pad)}
+.quote blockquote{margin:0;max-width:22ch;font-size:clamp(29px,5vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.14}
+.quote cite{display:block;margin-top:clamp(24px,4vw,44px);font-style:normal;font-size:15px;font-weight:500}
+
+/* ---------- prints / buy ---------- */
+.buy{border-top:1px solid var(--rule);margin-top:34px}
+.buy__row{border-bottom:1px solid var(--rule);padding:20px 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px}
+.buy__size{font-size:16.5px;font-weight:700;letter-spacing:-.015em;min-width:170px}
+.buy__desc{font-size:14.5px;color:var(--muted);flex:1 1 220px}
+.buy__price{font-size:16.5px;font-weight:600;min-width:74px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+  background:var(--ink);color:#fff;border:1px solid var(--ink);padding:11px 22px;
+  font-size:14px;font-weight:600;letter-spacing:-.01em;border-radius:999px;
+  transition:background .2s,color .2s;cursor:pointer}
+.btn:hover{background:#fff;color:var(--ink)}
+.btn--ghost{background:none;color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:#fff}
+.note{font-size:13.5px;color:var(--muted);margin:18px 0 0}
+
+/* ---------- newsletter ---------- */
+.list{border:1px solid var(--rule);padding:clamp(24px,3.4vw,40px);margin-top:clamp(34px,4.5vw,52px)}
+.list h3{margin-bottom:6px}
+.list p{margin:0 0 20px;color:var(--muted);font-size:15.5px;max-width:52ch}
+.list__form{display:flex;flex-wrap:wrap;gap:10px;max-width:520px}
+.list__form input{flex:1 1 240px;font:inherit;font-size:16px;padding:13px 18px;
+  border:1px solid var(--ink);border-radius:999px;background:#fff;color:var(--ink);min-width:0}
+.list__form input::placeholder{color:var(--muted)}
+.list__msg{margin:14px 0 0;font-size:14.5px;font-weight:600;display:none}
+.list__msg.is-on{display:block}
+
+/* ---------- downloads / socials ---------- */
+.dl,.socials{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:34px}
+@media(min-width:700px){.dl,.socials{grid-template-columns:repeat(2,1fr)}}
+.dl a,.social{background:var(--paper);padding:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;transition:background .2s}
+.dl a:hover,.social:hover{background:#fafafa}
+.dl b,.social b{font-size:16px;font-weight:700;letter-spacing:-.015em;display:block}
+.dl span,.social span{font-size:14px;color:var(--muted)}
+.dl em,.social em{font-style:normal;font-size:20px;color:var(--muted);font-weight:300}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;gap:clamp(26px,4vw,56px)}
+@media(min-width:760px){.contact-grid{grid-template-columns:repeat(3,1fr)}}
+.big-link{display:inline-block;font-size:clamp(21px,6.2vw,44px);font-weight:800;
+  letter-spacing:-.035em;line-height:1.1;border-bottom:3px solid var(--ink);
+  padding:5px 0 7px;min-height:44px;overflow-wrap:break-word}
+.big-link:hover{color:var(--muted);border-bottom-color:var(--muted)}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--rule);padding:clamp(44px,6vw,72px) var(--pad) calc(40px + env(safe-area-inset-bottom))}
+.foot__logo{max-width:min(420px,78vw);margin:0 0 clamp(30px,4vw,44px)}
+.foot__grid{display:grid;gap:26px 40px;font-size:14px;line-height:1.75}
+@media(min-width:760px){.foot__grid{grid-template-columns:repeat(5,1fr)}}
+.foot h4{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{margin-bottom:4px}
+.foot a:hover{color:var(--muted)}
+.foot__base{margin-top:clamp(34px,5vw,56px);padding-top:22px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px;font-size:13px;color:var(--muted)}
+.foot__credit{margin-left:auto}
+.foot__credit a{border-bottom:1px solid currentColor}
+.foot__credit a:hover{border-bottom-color:transparent}
+@media(max-width:760px){
+  /* The floating scroll-to-top button sits bottom-right, so the credit gets its
+     own full-width row and the footer keeps clear space beneath it. */
+  .foot{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+  .foot__base{gap:4px 22px}
+  .foot__credit{margin-left:0;flex-basis:100%;padding-top:6px;padding-right:64px}
+  .foot li{margin-bottom:0}
+  .foot li a{display:inline-block;padding:11px 0;min-height:44px}
+  .foot__base a{display:inline-block;padding:8px 0}
+}
+
+/* ---------- sticky mobile CTA ---------- */
+.cta-bar{position:fixed;left:0;right:0;bottom:0;z-index:95;display:none;gap:10px;
+  padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-top:1px solid var(--rule);
+  transform:translateY(110%);transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.cta-bar.is-on{transform:none}
+.cta-bar .btn{flex:1;padding:12px 10px;font-size:14px}
+@media(max-width:760px){
+  .cta-bar{display:flex}
+  .cta-bar.is-on ~ .top{bottom:calc(78px + env(safe-area-inset-bottom))}
+}
+
+/* ---------- to top ---------- */
+.top{position:fixed;right:clamp(16px,3vw,30px);bottom:calc(clamp(16px,3vw,30px) + env(safe-area-inset-bottom));
+  z-index:90;width:52px;height:52px;border-radius:50%;border:0;cursor:pointer;
+  background:#e9e9e9;color:var(--ink);font-size:22px;line-height:1;display:grid;place-items:center;
+  opacity:0;pointer-events:none;transition:opacity .3s,background .2s}
+.top.is-on{opacity:1;pointer-events:auto}
+.top:hover{background:#dcdcdc}
+
+/* ---------- mobile refinements ---------- */
+@media(max-width:700px){
+  .buy__row{flex-direction:column;align-items:stretch;gap:4px;padding:18px 0}
+  .buy__size,.buy__price{min-width:0}
+  .buy__desc{flex:none}
+  .buy__price{margin-bottom:10px}
+  .buy__row .btn{width:100%}
+  .list__form{flex-direction:column}
+  .list__form input,.list__form button{width:100%}
+  .dl a,.social{padding:20px 18px}
+  .sec{padding:clamp(40px,10vw,64px) 0}
+}
+@media(max-height:720px){
+  .nav__list{padding:clamp(10px,3vh,28px) 0 24px;gap:2px}
+  .nav__list a{font-size:clamp(23px,5.4vh,38px)}
+  .nav__foot{padding:16px 0 22px}
+}
+@media(max-width:360px){.nav__list a{font-size:27px}.mark{font-size:15px}}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.is-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+[id]{scroll-margin-top:calc(var(--head-h) + 12px)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="head" id="head">
+  <a href="index.html" class="mark" aria-label="CC Illustrations, home">CC Illustrations</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="nav__top">
+    <span class="mark">CC Illustrations</span>
+    <button class="nav__close" id="navClose" aria-label="Close menu">&times;</button>
+  </div>
+  <ul class="nav__list">
+    <li><a href="index.html#artist"><i style="background:var(--lime)"></i>The Artist</a></li>
+    <li><a href="index.html#books"><i style="background:var(--pink)"></i>Books</a></li>
+    <li><a href="index.html#work"><i style="background:var(--cyan)"></i>Selected Work</a></li>
+    <li><a href="index.html#prints"><i style="background:var(--yellow)"></i>Prints</a></li>
+    <li><a href="index.html#commissions"><i style="background:var(--orange)"></i>Commissions</a></li>
+    <li><a href="index.html#clothing"><i style="background:var(--yellow)"></i>Clothing</a></li>
+    <li><a href="index.html#schools"><i style="background:var(--lime)"></i>School Visits</a></li>
+    <li><a href="index.html#socials"><i style="background:var(--pink)"></i>Socials</a></li>
+    <li><a href="index.html#contact"><i style="background:var(--cyan)"></i>Contact</a></li>
+  </ul>
+  <div class="nav__foot">
+    <span>Northern Ireland</span>
+    <a href="mailto:charliecully547@gmail.com">charliecully547@gmail.com</a>
+    <a href="https://www.instagram.com/ccillustrations/" rel="me noopener" target="_blank">@ccillustrations</a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="wrap">
+  <section class="sec" aria-labelledby="p-h">
+    <p class="eyebrow"><i style="background:var(--cyan)"></i>Legal</p>
+    <h1 id="p-h" style="margin-top:0">Privacy policy</h1>
+    <p class="lede">Short version: this site collects almost nothing, and sells nothing on to anyone.</p>
+
+    <div class="prose">
+      <p><strong>Last updated:</strong> August 2026</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">Who runs this site</h2>
+      <p>This site belongs to CC Illustrations (Charlie Cully), based in Northern Ireland. For anything in this policy, email <a href="mailto:charliecully547@gmail.com" style="border-bottom:1px solid currentColor">charliecully547@gmail.com</a>.</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">What is collected</h2>
+      <p><strong>Nothing at all, unless you choose to give it.</strong> There is no account to create and no cookie banner, because the site sets no tracking cookies of its own.</p>
+      <p>You share information only when you:</p>
+      <ul>
+        <li><strong>Email or message Charlie.</strong> Your name, contact details and whatever you write are used to answer you and to run the commission or order, and nothing else.</li>
+        <li><strong>Join the release list.</strong> Your email address is used to tell you about the book release and print drops. Every message has an unsubscribe link, and leaving removes you from the list entirely.</li>
+      </ul>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">Analytics</h2>
+      <p>If website analytics are switched on, they record anonymous, aggregated information — which pages are visited, roughly which country the visit came from, which device type. None of it identifies you, and none of it is used for advertising.</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">Who sees your information</h2>
+      <p>Charlie, and the services needed to run the site — the web host, and the email provider that sends the release list. Your details are never sold, rented or passed to advertisers.</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">How long it is kept</h2>
+      <p>Enquiry emails are kept as long as needed for the work and normal business records. List subscriptions are kept until you unsubscribe.</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">Your rights</h2>
+      <p>Under UK GDPR you can ask to see the personal information held about you, correct it, have it deleted, or object to how it is used. Email the address above and it will be dealt with within one month. If you are unhappy with the response you can complain to the Information Commissioner's Office at ico.org.uk.</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">Children</h2>
+      <p>The work is made for children, but the site is aimed at the adults who buy books, prints and commissions. Nobody under 16 should sign up to the release list without a parent or guardian's say-so.</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">Other sites</h2>
+      <p>Links out to Instagram, TikTok, Facebook and WhatsApp are governed by those companies' own privacy policies, not this one.</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">Copyright</h2>
+      <p>All artwork on this site is by Charlie Cully and remains his. It may not be copied, reproduced, printed or used commercially without written permission.</p>
+
+      <h2 style="font-size:clamp(21px,2.8vw,28px);margin-top:2em">Changes</h2>
+      <p>If this policy changes, the revised version will appear here with a new date at the top.</p>
+    </div>
+  </section>
+</div>
+</main>
+<footer class="foot">
+  <img class="foot__logo" src="images/cc-logo.jpg" width="1000" height="750" decoding="async"
+       alt="CC Illustrations logo: hand-drawn monsters and characters wrapped around dripping bubble lettering.">
+  <div class="foot__grid">
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li>CC Illustrations</li>
+        <li>Northern Ireland</li>
+        <li><a href="mailto:charliecully547@gmail.com">charliecully547@gmail.com</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#artist">The Artist</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#work">Selected Work</a></li>
+        <li><a href="#clothing">Clothing</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Work with Charlie</h4>
+      <ul>
+        <li><a href="#commissions">Commissions</a></li>
+        <li><a href="#schools">School visits</a></li>
+        <li><a href="#contact">Publishers &amp; press</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Shop &amp; downloads</h4>
+      <ul>
+        <li><a href="#prints">Buy a print</a></li>
+        <li><a href="#list">Book release list</a></li>
+        <li><a href="downloads/cc-illustrations-portfolio.pdf" download>Portfolio (PDF)</a></li>
+        <li><a href="downloads/cc-illustrations-rate-card.pdf" download>Rate card (PDF)</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/ccillustrations/" rel="me noopener" target="_blank">Instagram</a></li>
+        <li><a href="https://www.facebook.com/share/197UqMLv6M/" rel="me noopener" target="_blank">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot__base">
+    <span>&copy; <span id="yr">2026</span> CC Illustrations. All artwork by Charlie Cully.</span>
+    <span>All illustrations drawn by hand.</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="#top">Back to top</a>
+    <span class="foot__credit">Site by <a href="https://www.apexdesignni.co.uk" rel="noopener" target="_blank">Apex</a>.</span>
+  </div>
+</footer>
+
+<button class="top" id="toTop" aria-label="Back to top">&#8593;</button>
+<script>
+(function(){
+  var head=document.getElementById('head'),nav=document.getElementById('nav'),
+      burger=document.getElementById('burger'),closeBtn=document.getElementById('navClose'),
+      toTop=document.getElementById('toTop');
+  var yr=document.getElementById('yr'); if(yr)yr.textContent=new Date().getFullYear();
+  function openNav(o){
+    nav.classList.toggle('is-open',o);
+    burger.setAttribute('aria-expanded',o);
+    document.body.style.overflow=o?'hidden':'';
+    if(o){closeBtn.focus();}else{burger.focus();}
+  }
+  burger.addEventListener('click',function(){openNav(true)});
+  closeBtn.addEventListener('click',function(){openNav(false)});
+  nav.addEventListener('click',function(e){if(e.target.closest('a'))openNav(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('is-open'))openNav(false)});
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY,atEnd=(y+window.innerHeight)>(document.documentElement.scrollHeight-180);
+    head.classList.toggle('is-stuck',y>8);
+    toTop.classList.toggle('is-on',y>600&&!atEnd);
+  },{passive:true});
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+})();
+</script>
+</body>
+</html>
