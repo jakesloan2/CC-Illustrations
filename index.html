@@ -22,18 +22,18 @@
 <meta property="og:title" content="CC Illustrations | Charlie Cully — Children's Book Illustrator">
 <meta property="og:description" content="Hand-drawn marker worlds packed with characters. Picture books, signed prints, commissions and school visits from Northern Ireland.">
 <meta property="og:url" content="https://www.ccillustrations.com/">
-<meta property="og:image" content="https://www.ccillustrations.com/images/og-cc-illustrations.jpg">
+<meta property="og:image" content="https://www.ccillustrations.com/images/og-cc-illustrations.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The CC Illustrations logo: hand-drawn monsters wrapped around dripping bubble lettering.">
-<meta property="og:image" content="https://www.ccillustrations.com/images/share-square.jpg">
+<meta property="og:image" content="https://www.ccillustrations.com/images/share-square.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="1200">
 <meta property="og:image:alt" content="The CC Illustrations logo.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CC Illustrations | Charlie Cully — Children's Book Illustrator">
 <meta name="twitter:description" content="Hand-drawn marker worlds packed with characters. Books, prints, commissions and school visits.">
-<meta name="twitter:image" content="https://www.ccillustrations.com/images/og-cc-illustrations.jpg">
+<meta name="twitter:image" content="https://www.ccillustrations.com/images/og-cc-illustrations.jpg?v=2">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
@@ -513,7 +513,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
     <!-- ===================== THE ARTIST ===================== -->
     <section class="sec" id="artist" aria-labelledby="artist-h">
       <h1 id="artist-h">Charlie Cully</h1>
-      <p class="lede">Hand-drawn worlds you can get lost in. Fineliner, marker, and a story behind each and every character.</p>
+      <p class="lede">Hand-drawn worlds you can get lost in. Fineliner, marker, and a story behind each and every character..</p>
 
       <div class="cols cols--bio">
         <div class="prose rv">
@@ -1104,45 +1104,60 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
     if(Math.abs(d)>50)lbShow(d>0?lbIndex-1:lbIndex+1);
   },{passive:true});
 
-  /* Identity animation. Desktop autoplays happily; mobile is stricter — iOS needs
-     muted + playsinline AND the media loaded before play() will resolve, and it
-     refuses outright in Low Power Mode. So: load on approach, then play, and if the
-     browser still says no, show a tap-to-play button rather than a dead poster. */
+  /* Identity animation.
+     Autoplay is a privilege the browser can withdraw at any moment, so this never
+     assumes success. It retries on every event that might grant permission again —
+     returning to the page (bfcache), tab becoming visible, any user gesture — and
+     only shows the tap-to-play button once it has genuinely run out of options.
+     iOS Low Power Mode blocks autoplay outright and cannot be overridden; the
+     button is the answer there. */
   var iv=document.getElementById('identVid'), ivBtn=document.getElementById('identPlay');
   if(iv){
-    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches, tried=false,
-        touch=window.matchMedia('(hover: none)').matches;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+        touch=window.matchMedia('(hover: none)').matches,
+        inView=false, settled=false;
 
-    function ivFail(){ if(ivBtn)ivBtn.hidden=false; iv.setAttribute('controls',''); }
+    function ivNear(){
+      var r=iv.getBoundingClientRect();
+      return r.top<window.innerHeight+200 && r.bottom>-200;
+    }
+    function ivShowBtn(){ if(ivBtn)ivBtn.hidden=false; }
+    function ivHideBtn(){ if(ivBtn)ivBtn.hidden=true; }
+
     function ivTry(){
-      iv.muted=true;                       // must be set in JS too for iOS
+      if(reduce||document.hidden||!ivNear())return;
+      iv.muted=true;                        // iOS checks the property, not just the attribute
+      if(iv.readyState<2){
+        iv.preload='auto';
+        try{iv.load();}catch(e){}
+        iv.addEventListener('canplay',ivTry,{once:true});
+      }
       var pr=iv.play();
-      if(pr&&pr.catch)pr.catch(ivFail);
-    }
-    function ivStart(){
-      if(iv.preload!=='auto'){iv.preload='auto';}
-      if(iv.readyState<2){                 // not enough data yet — load first
-        if(!tried){tried=true;iv.load();}
-        iv.addEventListener('loadeddata',ivTry,{once:true});
-        setTimeout(function(){if(iv.paused)ivTry();},600);
-      }else{ivTry();}
+      if(pr&&pr.then){
+        pr.then(ivHideBtn).catch(function(){ ivShowBtn(); });
+      }
     }
 
-    if(ivBtn)ivBtn.addEventListener('click',function(){ivBtn.hidden=true;iv.play();});
+    // Retry on every opportunity the browser might hand permission back.
+    ['pageshow','focus'].forEach(function(ev){
+      window.addEventListener(ev,function(){ setTimeout(ivTry,60); });
+    });
+    document.addEventListener('visibilitychange',function(){
+      if(!document.hidden)setTimeout(ivTry,60);
+    });
+    // Deliberately NOT {once:true} — permission can be withdrawn again later.
+    ['touchstart','pointerdown','scroll','keydown'].forEach(function(ev){
+      window.addEventListener(ev,function(){ if(iv.paused)ivTry(); },{passive:true});
+    });
+    // If it stops on its own while still on screen, have another go.
+    iv.addEventListener('pause',function(){
+      if(!reduce&&inView&&!document.hidden){ setTimeout(function(){ if(iv.paused)ivTry(); },250); }
+    });
+    iv.addEventListener('playing',ivHideBtn);
+    iv.addEventListener('stalled',ivTry);
+    iv.addEventListener('suspend',function(){ if(inView&&iv.paused)ivTry(); });
 
-    if(!reduce){
-      var kick=function(){
-        if(iv.paused&&isNear()){ivTry();}
-        window.removeEventListener('touchstart',kick);
-        window.removeEventListener('scroll',kick);
-      };
-      var isNear=function(){
-        var r=iv.getBoundingClientRect();
-        return r.top<window.innerHeight&&r.bottom>0;
-      };
-      window.addEventListener('touchstart',kick,{once:true,passive:true});
-      window.addEventListener('scroll',kick,{once:true,passive:true});
-    }
+    if(ivBtn)ivBtn.addEventListener('click',function(){ ivHideBtn(); iv.muted=true; iv.play(); });
 
     if(reduce){
       iv.removeAttribute('autoplay');
@@ -1151,11 +1166,12 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
     }else if('IntersectionObserver' in window){
       new IntersectionObserver(function(es){
         es.forEach(function(e){
-          if(e.isIntersecting){ivStart();}
-          else if(!iv.paused&&!touch){iv.pause();}
+          inView=e.isIntersecting;
+          if(inView){ivTry();}
+          else if(!iv.paused&&!touch){iv.pause();}   // desktop only: saves nothing on iOS
         });
-      },{threshold:.25,rootMargin:'200px 0px'}).observe(iv);
-    }else{ivFail();}
+      },{threshold:.2,rootMargin:'200px 0px'}).observe(iv);
+    }else{ ivTry(); }
   }
 
   if('IntersectionObserver' in window){
