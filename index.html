@@ -6,7 +6,7 @@
 
 <!-- ============ SEO: PRIMARY ============ -->
 <title>CC Illustrations | Charlie Cully — Children's Book Illustrator, Northern Ireland</title>
-<meta name="description" content="Charlie Cully is a Northern Ireland children's book illustrator working in fineliner and alcohol marker. Author-illustrator of My Time Travel Adventure. Signed prints, commissioned originals, school visits and licensing.">
+<meta name="description" content="Charlie Cully is a Northern Ireland children's book illustrator and author of My Time Travel Adventure, out now in softback. Hand-drawn in fineliner and marker. Signed prints, commissions, apparel and school visits — order direct by WhatsApp or email.">
 <link rel="canonical" href="https://www.ccillustrations.co.uk/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Charlie Cully">
@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="CC Illustrations">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="CC Illustrations | Charlie Cully — Children's Book Illustrator">
-<meta property="og:description" content="Hand-drawn marker worlds packed with characters. Picture books, signed prints, commissions and school visits from Northern Ireland.">
+<meta property="og:description" content="Author-illustrator of My Time Travel Adventure, out now. Hand-drawn worlds packed with characters — prints, commissions, apparel and school visits from Northern Ireland.">
 <meta property="og:url" content="https://www.ccillustrations.co.uk/">
 <meta property="og:image" content="https://www.ccillustrations.co.uk/images/og-cc-illustrations.jpg?v=2">
 <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@
 <meta property="og:image:alt" content="The CC Illustrations logo.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CC Illustrations | Charlie Cully — Children's Book Illustrator">
-<meta name="twitter:description" content="Hand-drawn marker worlds packed with characters. Books, prints, commissions and school visits.">
+<meta name="twitter:description" content="Author-illustrator of My Time Travel Adventure, out now. Prints, commissions, apparel and school visits.">
 <meta name="twitter:image" content="https://www.ccillustrations.co.uk/images/og-cc-illustrations.jpg?v=2">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -89,6 +89,13 @@
       "illustrator": { "@id": "https://www.ccillustrations.co.uk/#person" },
       "author": { "@id": "https://www.ccillustrations.co.uk/#person" },
       "genre": "Children's picture book",
+      "inLanguage": "en-GB",
+      "workExample": [
+        { "@type": "Book", "bookFormat": "https://schema.org/Paperback", "name": "My Time Travel Adventure (softback)",
+          "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "GBP", "url": "https://www.ccillustrations.co.uk/#books" } },
+        { "@type": "Book", "bookFormat": "https://schema.org/Hardcover", "name": "My Time Travel Adventure (hardback)",
+          "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "priceCurrency": "GBP", "url": "https://www.ccillustrations.co.uk/#books" } }
+      ],
       "image": "https://www.ccillustrations.co.uk/images/book-covers.jpg",
       "description": "A picture book answering the question every child is asked \u2014 what do you want to be when you grow up? Charlie travels back through his own growing up, a love of art turning page by page into a career in illustration. Drawn by hand in fineliner and alcohol marker."
     },
@@ -126,6 +133,16 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
+        { "@type": "Question", "name": "Where can I buy Charlie Cully's book, My Time Travel Adventure?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The softback is available now. The hardback is available on request. Message Charlie on WhatsApp on +44 7930 163563 or email ccillustrations07@gmail.com with the format you want and he will confirm price and postage, usually the same day." } },
+        { "@type": "Question", "name": "What is My Time Travel Adventure about?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It answers the question every child gets asked: what do you want to be when you grow up? The story follows Charlie back through his own growing up, watching a love of art and making things turn page by page into a career in illustration. Its message is that you can do anything if you work hard and put your mind to it." } },
+        { "@type": "Question", "name": "How do I order a print or a t-shirt from CC Illustrations?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Orders are handled personally by Charlie rather than through a checkout. Message him on WhatsApp on +44 7930 163563 or email ccillustrations07@gmail.com with the piece and size you want, and he will confirm the price, postage and how to pay." } },
+        { "@type": "Question", "name": "Where has Charlie Cully exhibited?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Charlie has exhibited at the Next Generation Exhibition at Newcastle Town Hall in 2024, 2025 and 2026, as part of Creative Peninsula. He was also a Little Wing winner, and was awarded an A in A-Level Art in August 2026." } },
+        { "@type": "Question", "name": "Who is Charlie Cully?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Charlie Cully is a children's book illustrator based in Northern Ireland, working under the name CC Illustrations. He draws by hand in fineliner and alcohol marker, and is the author-illustrator of My Time Travel Adventure." } },
         { "@type": "Question", "name": "How long does a commissioned illustration take?",
           "acceptedAnswer": { "@type": "Answer", "text": "Most single-character commissions take two to three weeks from approved sketch. Large multi-character pieces take four to six weeks. Every piece is drawn by hand, so timings depend on how much is going into the frame." } },
         { "@type": "Question", "name": "Do you post prints outside the UK and Ireland?",
@@ -374,21 +391,10 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 .quote blockquote{margin:0;max-width:22ch;font-size:clamp(29px,5vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.14}
 .quote cite{display:block;margin-top:clamp(24px,4vw,44px);font-style:normal;font-size:15px;font-weight:500}
 
-/* ---------- book hero: portrait behind, book in front ---------- */
-.bookhero{position:relative;margin:clamp(28px,4vw,44px) 0 0;max-width:720px}
-.bookhero__port{position:relative;width:64%;background:#f4f4f4}
-.bookhero__port>img{width:100%;display:block}
-.bookhero__book{
-  position:absolute;left:56%;bottom:-20px;width:88%;
-  filter:drop-shadow(0 16px 38px rgba(0,0,0,.26));
-}
-.bookhero__book img{width:100%;display:block}
-.bookhero figcaption{margin:44px 0 0;font-size:13.5px;color:var(--muted);max-width:44ch}
-@media(max-width:600px){
-  .bookhero__port{width:70%}
-  .bookhero__book{width:82%;left:52%;bottom:-12px}
-  .bookhero figcaption{margin-top:32px}
-}
+/* ---------- contact portrait ---------- */
+.portrait{margin:0 0 clamp(34px,4.5vw,52px);max-width:300px;background:#f4f4f4}
+.portrait img{width:100%;display:block}
+.portrait figcaption{padding:12px 2px 0;font-size:13.5px;color:var(--muted)}
 
 /* ---------- dedication ---------- */
 .dedication{
@@ -622,7 +628,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
     <!-- ===================== THE ARTIST ===================== -->
     <section class="sec" id="artist" aria-labelledby="artist-h">
       <h1 id="artist-h">Charlie Cully</h1>
-      <p class="lede">Hand-drawn worlds you can get lost in. Fineliner, marker, and hundreds of characters per page.</p>
+      <p class="lede">Hand-drawn worlds you can get lost in. Fineliner, marker, and a story behind every character...</p>
 
       <div class="cols cols--bio">
         <div class="prose rv">
@@ -686,17 +692,11 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
         <p>Underneath the monsters and the time-travel watch, it carries a simple message: you can do anything if you work hard and put your mind to it. It ends where it began, with a boy being told to dream big — and doing exactly that.</p>
       </div>
 
-      <figure class="bookhero rv">
-        <div class="bookhero__port">
-          <img src="images/charlie-portrait.jpg" width="900" height="1125" loading="lazy"
-               alt="Charlie Cully photographed in front of one of his own hand-drawn character murals.">
-          <div class="bookhero__book">
-            <img src="images/book-single.jpg" width="900" height="802" loading="lazy"
-                 alt="My Time Travel Adventure, showing the cover of three laughing boys and a green monster.">
-          </div>
-        </div>
-        <figcaption>Charlie Cully with his debut picture book, written and illustrated by hand.</figcaption>
-      </figure>
+      <figure class="figure rv"><button type="button" class="lb" data-src="images/book-covers.jpg" data-cap="My Time Travel Adventure — hardback picture book, written and illustrated by Charlie Cully">
+        <img src="images/book-covers.jpg" width="1270" height="1239" loading="lazy"
+             alt="Copies of My Time Travel Adventure, showing the cover of three laughing boys and a green monster.">
+        <figcaption>My Time Travel Adventure<span>Written and illustrated by Charlie Cully</span></figcaption>
+      </button></figure>
 
       <div class="stackmedia">
         <figure class="figure rv"><button type="button" class="lb" data-src="images/spread-watch.jpg" data-cap="An open spread showing Charlie asleep dreaming of cartoon monsters, and his time-travel watch glowing beside him.">
@@ -743,7 +743,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
           </div>
         </div>
         <div class="acc__item">
-          <button class="acc__btn" aria-expanded="false">Collector's edition</button>
+          <button class="acc__btn" aria-expanded="false">Collector's edition - (coming soon)</button>
           <div class="acc__panel">
             <p>A numbered slipcase edition with a matching portfolio of loose prints, foil-blocked and hand-signed. Coming soon — join the list and you'll hear the moment it opens.</p>
           </div>
@@ -766,8 +766,8 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
       </div>
 
       <div class="dedication rv">
-        <h3>For four people</h3>
-        <p>My Time Travel Adventure is dedicated to the grandparents who kept the pencils sharpened and never once suggested drawing was a waste of an afternoon.</p>
+        <h3>Dedicated to four special people</h3>
+        <p>My Time Travel Adventure is dedicated to the grandparents who have helped the chase my dreams.</p>
         <ul>
           <li>Granny Berta</li>
           <li>Granda Edwin</li>
@@ -794,7 +794,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
           <span class="avail__tag">On request</span>
         </div>
         <div class="avail__row">
-          <span class="avail__name">Collector's edition</span>
+          <span class="avail__name">Collector's edition - (coming soon)</span>
           <span class="avail__desc">Slipcase and portfolio, numbered and signed</span>
           <span class="avail__tag">Coming soon</span>
         </div>
@@ -969,7 +969,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 
       <div class="special rv">
         <div>
-          <p class="eyebrow" style="color:rgba(255,255,255,.6)"><i style="background:var(--yellow)"></i>Collector's edition</p>
+          <p class="eyebrow" style="color:rgba(255,255,255,.6)"><i style="background:var(--yellow)"></i>Collector's edition - (coming soon)</p>
           <h3>The Coal Board Box Collection</h3>
           <p>A boxed set for people who want the whole thing in one piece — presented, numbered and signed by hand.</p>
           <p>Coming soon, in small numbered runs. Join the list or message Charlie and you'll hear before it opens.</p>
@@ -1145,6 +1145,12 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
       <p class="rv" style="margin:0 0 clamp(36px,5vw,56px)">
         <a class="big-link" href="mailto:ccillustrations07@gmail.com">ccillustrations07@gmail.com</a>
       </p>
+      <figure class="portrait rv" itemscope itemtype="https://schema.org/ImageObject">
+        <img src="images/charlie-portrait.jpg" width="900" height="1125" loading="lazy"
+             alt="Charlie Cully photographed in front of one of his own hand-drawn character murals.">
+        <figcaption>Charlie Cully — illustrator, CC Illustrations</figcaption>
+      </figure>
+
       <div class="contact-grid">
         <div class="meta rv">
           <h3>Commissions</h3>
