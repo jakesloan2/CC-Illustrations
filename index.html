@@ -77,7 +77,8 @@
       "telephone": "+44 7930 163563",
       "sameAs": [
         "https://www.instagram.com/ccillustrations/",
-        "https://www.facebook.com/share/197UqMLv6M/"
+        "https://www.facebook.com/share/197UqMLv6M/",
+        "https://www.instagram.com/p/CFO9sHzhtS2/"
       ]
     },
     {
@@ -295,6 +296,8 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 .trust li{background:var(--paper);padding:20px 18px}
 .trust b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.015em;margin-bottom:3px}
 .trust span{font-size:13.5px;color:var(--muted);line-height:1.5}
+.ach-link{display:inline-block;color:var(--ink);border-bottom:1px solid var(--ink);padding:10px 0 4px;min-height:44px}
+.ach-link:hover{border-bottom-color:transparent;color:var(--muted)}
 
 /* ---------- accordion ---------- */
 .acc{border-top:1px solid var(--rule);margin-top:36px}
@@ -418,15 +421,12 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 .tl__meta{font-size:13.5px;color:var(--muted);line-height:1.6}
 .tl__meta b{display:block;color:var(--ink);font-weight:700;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
 .tl__fig{margin:0;background:#f4f4f4}
-.tl__fig img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.tl__fig{margin:0;background:#f4f4f4;overflow:hidden}
+.tl__fig img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.tl__fig:hover img{transform:scale(1.03)}
+.tl__fig .lb{cursor:zoom-in}
 .tl a.inline{color:var(--ink);border-bottom:1px solid var(--ink)}
 .tl a.inline:hover{border-bottom-color:transparent}
-
-/* awaiting-photo placeholder — remove the element once a real photo is dropped in */
-.tl__await{
-  display:grid;place-items:center;text-align:center;aspect-ratio:4/3;
-  border:1px dashed var(--rule);color:var(--muted);font-size:12.5px;padding:16px;
-}
 
 /* ---------- coal board collection ---------- */
 .special{
@@ -743,7 +743,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
           </div>
         </div>
         <div class="acc__item">
-          <button class="acc__btn" aria-expanded="false">Collector's edition - (coming soon)</button>
+          <button class="acc__btn" aria-expanded="false">Collector's edition</button>
           <div class="acc__panel">
             <p>A numbered slipcase edition with a matching portfolio of loose prints, foil-blocked and hand-signed. Coming soon — join the list and you'll hear the moment it opens.</p>
           </div>
@@ -766,15 +766,15 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
       </div>
 
       <div class="dedication rv">
-        <h3>Dedicated to four special people</h3>
-        <p>My Time Travel Adventure is dedicated to the grandparents who have helped the chase my dreams.</p>
+        <h3>Dedicated to four very special people</h3>
+        <p>My Time Travel Adventure is dedicated to the grandparents who kept the pencils sharpened and never once suggested drawing was a waste of an afternoon.</p>
         <ul>
           <li>Granny Berta</li>
           <li>Granda Edwin</li>
           <li>Granny Audrey</li>
           <li>Granda Walker</li>
         </ul>
-        <p class="after">With thanks — this one is for you.</p>
+        <p class="after">With love — this one is for you.</p>
       </div>
 
       <div class="avail rv">
@@ -794,7 +794,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
           <span class="avail__tag">On request</span>
         </div>
         <div class="avail__row">
-          <span class="avail__name">Collector's edition - (coming soon)</span>
+          <span class="avail__name">Collector's edition</span>
           <span class="avail__desc">Slipcase and portfolio, numbered and signed</span>
           <span class="avail__tag">Coming soon</span>
         </div>
@@ -833,10 +833,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
             <b>Where</b>
             Newcastle Town Hall<br>
             Creative Peninsula
-            <!-- PHOTO NEEDED: 2026 exhibition, book on display.
-                 Save as images/exhibition-2026.jpg and replace the block below with:
-                 <figure class="tl__fig"><img src="images/exhibition-2026.jpg" width="800" height="600" loading="lazy" alt="The book on display at the 2026 Next Generation Exhibition."></figure> -->
-            <div class="tl__await" style="margin-top:14px">Exhibition photograph to follow</div>
+            <figure class="tl__fig" style="margin-top:14px"><button type="button" class="lb" data-src="images/exhibition-2026.jpg" data-cap="My Time Travel Adventure on display at the 2026 Next Generation Exhibition, Newcastle Town Hall."><img src="images/exhibition-2026.jpg" width="1200" height="900" loading="lazy" alt="My Time Travel Adventure on display at the 2026 Next Generation Exhibition, Newcastle Town Hall."></button></figure>
           </div>
         </div>
 
@@ -850,9 +847,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
             <b>Where</b>
             Newcastle Town Hall<br>
             Creative Peninsula
-            <!-- PHOTO NEEDED: 2025 exhibition (the mural).
-                 Save as images/exhibition-2025.jpg and swap in a <figure class="tl__fig"> as above. -->
-            <div class="tl__await" style="margin-top:14px">Exhibition photograph to follow</div>
+            <figure class="tl__fig" style="margin-top:14px"><button type="button" class="lb" data-src="images/exhibition-2025.jpg" data-cap="Charlie Cully's large-scale mural work exhibited at the 2025 Next Generation Exhibition, Newcastle Town Hall."><img src="images/exhibition-2025.jpg" width="1200" height="900" loading="lazy" alt="Charlie Cully's large-scale mural work exhibited at the 2025 Next Generation Exhibition, Newcastle Town Hall."></button></figure>
           </div>
         </div>
 
@@ -866,9 +861,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
             <b>Where</b>
             Newcastle Town Hall<br>
             Creative Peninsula
-            <!-- PHOTO NEEDED: 2024 exhibition (the wooden pieces).
-                 Save as images/exhibition-2024.jpg and swap in a <figure class="tl__fig"> as above. -->
-            <div class="tl__await" style="margin-top:14px">Exhibition photograph to follow</div>
+            <figure class="tl__fig" style="margin-top:14px"><button type="button" class="lb" data-src="images/exhibition-2024.jpg" data-cap="Charlie Cully's work at the 2024 Next Generation Exhibition, Newcastle Town Hall."><img src="images/exhibition-2024.jpg" width="1200" height="900" loading="lazy" alt="Charlie Cully's work at the 2024 Next Generation Exhibition, Newcastle Town Hall."></button></figure>
           </div>
         </div>
 
@@ -876,10 +869,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 
       <ul class="trust rv" style="margin-top:clamp(30px,4vw,44px);grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
         <li><b>A — A-Level Art</b><span>August 2026</span></li>
-        <li><b>Little Wing winner</b><span>
-          <!-- INSTAGRAM LINK NEEDED: replace the text below with
-               <a href="POST-URL" rel="noopener" target="_blank">See the post</a> -->
-          Announced on Instagram</span></li>
+        <li><b>Little Wing winner</b><span><a class="ach-link" href="https://www.instagram.com/p/CFO9sHzhtS2/" rel="noopener" target="_blank">See the post on Instagram &#8599;</a></span></li>
         <li><b>Three years exhibited</b><span>Next Generation Exhibition, 2024–2026</span></li>
         <li><b>Creative Peninsula</b><span>Newcastle Town Hall</span></li>
       </ul>
@@ -969,7 +959,7 @@ h3{font-size:clamp(18px,2.4vw,22px);font-weight:700;letter-spacing:-.02em;margin
 
       <div class="special rv">
         <div>
-          <p class="eyebrow" style="color:rgba(255,255,255,.6)"><i style="background:var(--yellow)"></i>Collector's edition - (coming soon)</p>
+          <p class="eyebrow" style="color:rgba(255,255,255,.6)"><i style="background:var(--yellow)"></i>Collector's edition</p>
           <h3>The Coal Board Box Collection</h3>
           <p>A boxed set for people who want the whole thing in one piece — presented, numbered and signed by hand.</p>
           <p>Coming soon, in small numbered runs. Join the list or message Charlie and you'll hear before it opens.</p>
